@@ -1,0 +1,74 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f85d04;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-container {
+    background-color: #f85d04;
+    width: 60%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#game {
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;  /* Mărire semnificativă a dimensiunii propoziției */
+    color: white;
+    margin-bottom: 20px;
+}
+
+input {
+    font-size: 14px;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+button {
+    font-size: 16px;
+    background-color: #3b28a7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #2a1d78;
+}
+
+#result-label {
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
+}
+
+#score-label {
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+}
+
+#next-btn {
+    display: none;
+    margin-top: 20px;
+}
