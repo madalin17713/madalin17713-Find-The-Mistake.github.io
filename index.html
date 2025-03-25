@@ -7,19 +7,93 @@
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="background-animation"></div>
     <div id="game-container">
         <div id="game">
-            <h1 id="sentence-label"></h1>
-            <input type="text" id="mistake-entry" placeholder="Enter the mistake">
-            <input type="text" id="correction-entry" placeholder="Enter the correct word">
-            <button id="check-btn">Check</button>
+            <h1 id="sentence-label"><i class="fas fa-language"></i> Grammar Challenge</h1>
+            <div class="input-container">
+                <input type="text" id="mistake-entry" placeholder="Enter the mistake">
+                <span class="input-icon"><i class="fas fa-search"></i></span>
+            </div>
+            <div class="input-container">
+                <input type="text" id="correction-entry" placeholder="Enter the correct word">
+                <span class="input-icon"><i class="fas fa-check"></i></span>
+            </div>
+            <button id="check-btn"><i class="fas fa-spell-check"></i> Check Answer</button>
             <p id="result-label"></p>
-            <p id="score-label">Score: 0</p>
-            <button id="next-btn">Next Sentence</button>
+            <div class="score-container">
+                <p id="score-label"><i class="fas fa-star"></i> Score: <span id="score-value">0</span></p>
+            </div>
+            <button id="next-btn"><i class="fas fa-arrow-right"></i> Next Sentence</button>
         </div>
     </div>
+    <div id="confetti-container"></div>
     <script src="script.js"></script>
+    <script>
+        // Create floating bubbles
+        function createBubbles() {
+            const bubbleCount = 20;
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                // Random size between 20px and 100px
+                const size = Math.random() * 80 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Random position
+                bubble.style.left = `${Math.random() * 100}vw`;
+                bubble.style.bottom = `-${size}px`;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 10 + 8;
+                const delay = Math.random() * 15;
+                bubble.style.animationDuration = `${duration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(bubble);
+            }
+        }
+        
+        // Add confetti effect when correct answer
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#ff9a8b', '#6a11cb', '#2575fc', '#4CAF50', '#ffeb3b'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Create bubbles on page load
+        window.addEventListener('load', createBubbles);
+        
+        // Add event listener to check button
+        document.getElementById('check-btn').addEventListener('click', function() {
+            // This is just for the visual effect - actual logic should be in script.js
+            const resultLabel = document.getElementById('result-label');
+            if (resultLabel.textContent.includes('Correct')) {
+                createConfetti();
+                resultLabel.className = 'correct';
+            } else if (resultLabel.textContent.includes('Wrong')) {
+                resultLabel.className = 'incorrect';
+            }
+        });
+    </script>
 </body>
 </html>
